@@ -1,0 +1,8 @@
+{
+    "python.analysis.extraPaths": [
+        "./Windows/ssh",
+        "./Windows/GameAutomation-master/modules",
+        "./Windows/GameAutomation-master/modules/fgo",
+        "./Windows/GameAutomation-master/modules/ff14"
+    ]
+}

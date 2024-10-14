@@ -1,0 +1,15 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: mariadb-phpmyadmin-pv
+  namespace: mariadb-phpmyadmin
+spec:
+  capacity:
+    storage: 50Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: mariadb-phpmyadmin-nfs-storage-class
+  nfs:
+    server: ubuntu-102.server.com
+    path: /mnt/share/k8s/mariadb-phpmyadmin

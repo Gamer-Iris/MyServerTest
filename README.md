@@ -673,7 +673,30 @@ kubectl apply -f ~/MyServerTest/Linux/kubernetes/apps/metallb/metallb-config.yml
 kubectl get pods -n metallb-system -o wide
 ```
 
-１４.CoreDNS設定①（Windows_TereTerm（VM（k8s環境いずれか））側操作）<br>
+１４.NFSクライアント設定（Windows_TereTerm（VM（ubuntu-102以外））側操作）<br>
+```
+sudo apt install -y nfs-common
+```
+
+１５.NFSサーバ設定（Windows_TereTerm（VM（ubuntu-102））側操作）<br>
+```
+sudo apt install -y nfs-kernel-server
+sudo mkdir -p /mnt/share/k8s/{alertmanager,grafana,mariadb-phpmyadmin,minecraft,prometheus,wordpress}
+sudo mkdir -p /mnt/share/k8s/minecraft/{backup1,backup2,proxy,server1,server2}
+sudo chown -R $USER:$USER /mnt/share/k8s
+sudo chmod 775 /mnt/share/k8s
+sudo chmod 644 /etc/exports
+sudo chown root:root /etc/exports
+ls -l /mnt/share/k8s
+echo "/mnt/share/k8s 192.168.11.0/24(rw,async,crossmnt,no_root_squash,no_subtree_check)" | \
+  sudo tee -a /etc/exports
+sudo systemctl start nfs-server.service
+sudo systemctl enable nfs-server.service
+sudo systemctl status nfs-server
+showmount -e
+```
+
+１６.CoreDNS設定①（Windows_TereTerm（VM（k8s環境いずれか））側操作）<br>
 ```
 kubectl apply -f ~/MyServerTest/Linux/kubernetes/apps/coredns/coredns-configmap.yml
 kubectl delete pod -n kube-system -l k8s-app=kube-dns
@@ -681,7 +704,7 @@ sudo reboot
 kubectl get pods -n kube-system -o wide
 ```
 
-１５.DNS設定（Windows_TereTerm（VM（k8s環境全て））側操作）<br>
+１７.DNS設定（Windows_TereTerm（VM（k8s環境全て））側操作）<br>
 ```
 cd /etc/netplan
 sudo nano 99-cloud-init.yaml
@@ -698,7 +721,7 @@ nslookup truenas-401.server.com
 nslookup 192.168.11.42
 ```
 
-１６.[OpenVPN](https://github.com/Nyr/openvpn-install)設定（Windows_TereTerm（VM（ubuntu-302））側操作）<br>
+１８.[OpenVPN](https://github.com/Nyr/openvpn-install)設定（Windows_TereTerm（VM（ubuntu-302））側操作）<br>
 ```
 cd
 sudo wget https://git.io/vpn -O openvpn-install.sh && sudo bash openvpn-install.sh
@@ -727,7 +750,7 @@ rm -r *.ovpn openvpn-install.sh
 exit
 ```
 
-１７.[mcrcon](https://github.com/Tiiffi/mcrcon)設定（Windows_TereTerm（VM（ubuntu-302））側操作）<br>
+１９.[mcrcon](https://github.com/Tiiffi/mcrcon)設定（Windows_TereTerm（VM（ubuntu-302））側操作）<br>
 ```
 cd
 sudo apt install -y gcc make
@@ -743,131 +766,7 @@ mcrcon バージョン番号
 rm -fr ~/mcrcon
 ```
 
-１８.[Cloudflare](https://dash.cloudflare.com/login)設定（Windows_TereTerm（VM（ubuntu-102））側操作）<br>
-```
-kubectl apply -f ~/MyServerTest/Linux/kubernetes/apps/cloudflare/cloudflare-namespace.yml
-kubectl apply -f ~/MyServerTest/Linux/kubernetes/apps/cloudflare/cloudflare-secret.yml
-kubectl apply -f ~/MyServerTest/Linux/kubernetes/apps/cloudflare/cloudflare-deployment.yml
-kubectl get pods -n cloudflare -o wide
-Cloudflareにログイン後、適宜設定
-```
-
-１９.NFSクライアント設定（Windows_TereTerm（VM（ubuntu-102以外））側操作）<br>
-```
-sudo apt install -y nfs-common
-```
-
-２０.NFSサーバ設定（Windows_TereTerm（VM（ubuntu-102））側操作）<br>
-```
-sudo apt install -y nfs-kernel-server
-sudo mkdir -p /mnt/share/k8s/{alertmanager,grafana,mariadb-phpmyadmin,minecraft,prometheus,wordpress}
-sudo mkdir -p /mnt/share/k8s/minecraft/{backup1,backup2,proxy,server1,server2}
-sudo chown -R $USER:$USER /mnt/share/k8s
-sudo chmod 775 /mnt/share/k8s
-sudo chmod 644 /etc/exports
-sudo chown root:root /etc/exports
-ls -l /mnt/share/k8s
-echo "/mnt/share/k8s 192.168.11.0/24(rw,async,crossmnt,no_root_squash,no_subtree_check)" | \
-  sudo tee -a /etc/exports
-sudo systemctl start nfs-server.service
-sudo systemctl enable nfs-server.service
-sudo systemctl status nfs-server
-showmount -e
-```
-
-２１.sc/pv/pvcのデプロイ（Windows_TereTerm（VM（k8s環境いずれか））側操作）<br>
-```
-kubectl apply -f ~/MyServerTest/Linux/kubernetes/apps/mariadb-phpmyadmin/mariadb-phpmyadmin-namespace.yml
-kubectl apply -f ~/MyServerTest/Linux/kubernetes/apps/mariadb-phpmyadmin/nfs-sc-mariadb-phpmyadmin.yml
-kubectl apply -f ~/MyServerTest/Linux/kubernetes/apps/mariadb-phpmyadmin/nfs-pv-mariadb-phpmyadmin.yml \
-  -f ~/MyServerTest/Linux/kubernetes/apps/mariadb-phpmyadmin/nfs-pvc-mariadb-phpmyadmin.yml
-kubectl apply -f ~/MyServerTest/Linux/kubernetes/apps/minecraft/minecraft-namespace.yml
-kubectl apply -f ~/MyServerTest/Linux/kubernetes/apps/minecraft/nfs-sc-minecraft.yml
-kubectl apply -f ~/MyServerTest/Linux/kubernetes/apps/minecraft/nfs-pv-minecraft.yml \
-  -f ~/MyServerTest/Linux/kubernetes/apps/minecraft/nfs-pvc-minecraft.yml
-kubectl apply -f ~/MyServerTest/Linux/kubernetes/apps/monitoring/monitoring-namespace.yml
-kubectl apply -f ~/MyServerTest/Linux/kubernetes/apps/monitoring/nfs-sc-monitoring.yml
-kubectl apply -f ~/MyServerTest/Linux/kubernetes/apps/monitoring/nfs-pv-monitoring.yml \
-  -f ~/MyServerTest/Linux/kubernetes/apps/monitoring/nfs-pvc-monitoring.yml
-kubectl apply -f ~/MyServerTest/Linux/kubernetes/apps/wordpress/wordpress-namespace.yml
-kubectl apply -f ~/MyServerTest/Linux/kubernetes/apps/wordpress/nfs-sc-wordpress.yml
-kubectl apply -f ~/MyServerTest/Linux/kubernetes/apps/wordpress/nfs-pv-wordpress.yml \
-  -f ~/MyServerTest/Linux/kubernetes/apps/wordpress/nfs-pvc-wordpress.yml
-kubectl get sc -o wide
-kubectl get pv,pvc -n mariadb-phpmyadmin -o wide
-kubectl get pv,pvc -n minecraft -o wide
-kubectl get pv,pvc -n monitoring -o wide
-kubectl get pv,pvc -n wordpress -o wide
-```
-
-２２.監視ツール一式導入（Windows_TereTerm（VM（ubuntu-102））側操作）<br>
-```
-helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-helm repo update
-helm search repo prometheus-community/kube-prometheus-stack
-helm install prometheus prometheus-community/kube-prometheus-stack -n monitoring
-helm upgrade prometheus prometheus-community/kube-prometheus-stack -n monitoring \
-  -f ~/MyServerTest/Linux/kubernetes/apps/monitoring/monitoring-custom.yml
-kubectl get serviceMonitor -n monitoring
-kubectl -n monitoring delete serviceMonitor prometheus-kube-prometheus-kube-etcd
-kubectl -n monitoring delete serviceMonitor prometheus-kube-prometheus-kube-controller-manager
-kubectl -n monitoring delete serviceMonitor prometheus-kube-prometheus-kube-proxy
-kubectl -n monitoring delete serviceMonitor prometheus-kube-prometheus-kube-scheduler
-kubectl get prometheusrules -n monitoring
-kubectl -n monitoring delete prometheusrules prometheus-kube-prometheus-etcd
-kubectl -n monitoring delete prometheusrules \
-  prometheus-kube-prometheus-kubernetes-system-controller-manager
-kubectl -n monitoring delete prometheusrules prometheus-kube-prometheus-kubernetes-system-kube-proxy
-kubectl -n monitoring delete prometheusrules prometheus-kube-prometheus-kubernetes-system-scheduler
-sudo reboot
-kubectl get pods -n monitoring -o wide
-kubectl get svc -n monitoring -o wide
-grafana表示内容にてログイン
-  ※grafanaはユーザー名：admin、PW：prom-operator
-```
-
-２３.DBツール一式導入（Windows_TereTerm（VM（ubuntu-102））側操作）<br>
-```
-kubectl apply -f ~/MyServerTest/Linux/kubernetes/apps/mariadb-phpmyadmin/mariadb-phpmyadmin-secret.yml
-kubectl apply -f ~/MyServerTest/Linux/kubernetes/apps/mariadb-phpmyadmin/mariadb-phpmyadmin-mariadb-deployment.yml
-kubectl apply -f ~/MyServerTest/Linux/kubernetes/apps/mariadb-phpmyadmin/mariadb-phpmyadmin-phpmyadmin-deployment.yml
-kubectl get pods -n mariadb-phpmyadmin -o wide
-kubectl get svc -n mariadb-phpmyadmin -o wide
-phpmyadmin表示内容にてログイン
-  ※phpmyadminはユーザー名：root
-rootユーザーにて、以下を設定
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-ユーザアカウント：「minecraft」「wordpress」を作成
-データベース：「minecraft_bluemap1」「minecraft_bluemap2」「minecraft_luckperms」を作成
-データベース固有の権限：「minecraft_bluemap1」「minecraft_bluemap2」「minecraft_luckperms」を追加
-データベース：「wordpress」を作成
-データベース固有の権限：「wordpress」を追加
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-各ユーザー名にてログイン後、設定内容を確認
-```
-
-２４.[WordPress](https://wordpress.com/ja)導入（Windows_TereTerm（VM（ubuntu-102））側操作）<br>
-```
-kubectl apply -f ~/MyServerTest/Linux/kubernetes/apps/wordpress/wordpress-secret.yml
-kubectl apply -f ~/MyServerTest/Linux/kubernetes/apps/wordpress/wordpress-deployment.yml
-kubectl get pods -n wordpress -o wide
-kubectl get svc -n wordpress -o wide
-wordpress表示内容にてログイン
-以下を設定
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-WPvivid（https://wordpress.org/plugins/wpvivid-backuprestore/）を導入
-「WPvivid Backup」→「バックアップ＆復元」→「アップロード」→「～_backup_all.zip」をドラックドロップ→「Upload」
-「バックアップ＆復元」→「復元」
-「バックアップ＆復元」→「削除」
-「スケジュール」→「バックアップスケジュールの有効化」→「変更を保存」
-「設定」→「バックアップの保持」→「7」→「変更を保存」
-「設定」→「WPvivid で使用する Web サーバーのディスクスペース」→「全てにチェック」→「空にする」
-「バックアップ＆復元」→「バックアップ」→「ダウンロード」→「削除」
-「設定」→「WPvivid で使用する Web サーバーのディスクスペース」→「全てにチェック」→「空にする」
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-```
-
-２５.minecraft導入（Windows_TereTerm（VM（ubuntu-102）及びminecraft）側操作）<br>
+２０.minecraft設定（Windows_TereTerm（VM（ubuntu-102）及びminecraft）側操作）<br>
 ```
 ~/MyServerTest/Linux/scripts/minecraft_start.sh
 ls -l /mnt/share/k8s/minecraft/proxy/config.yml
@@ -994,7 +893,7 @@ tar -czvf server2_resources_backup.tgz -C /mnt/share/k8s/minecraft/server2 resou
 ~/MyServerTest/Linux/scripts/minecraft_start.sh
 ```
 
-２６.crontab設定（Windows_TereTerm（Node、VM）側操作）<br>
+２１.crontab設定（Windows_TereTerm（Node、VM）側操作）<br>
 ```
 crontab -e
 1
@@ -1029,7 +928,7 @@ systemctl status cron.service
 sudo service cron start
 ```
 
-２７.ログローテーション設定（Windows_TereTerm（Node、VM）側操作）<br>
+２２.ログローテーション設定（Windows_TereTerm（Node、VM）側操作）<br>
 ```
 cd /etc/logrotate.d
 ls -l logrotate
@@ -1074,7 +973,7 @@ sudo chmod 644 logrotate
 sudo logrotate -d /etc/logrotate.conf
 ```
 
-２８.バックアップ設定（Windows_Proxmox側操作）<br>
+２３.バックアップ設定（Windows_Proxmox側操作）<br>
 ```
 以下を設定
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

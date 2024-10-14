@@ -611,43 +611,7 @@ Then you can join any number of worker nodes by running the following on each as
 ★⑥コマンド
 ```
 
-０９.Worker Node側設定（Windows_TereTerm（VM（ubuntu-301以外））側操作）<br>
-```
-Master Nodeの.kubeをWorker Nodeへ配置
-sudo chown $(id -u):$(id -g) $HOME/.kube/config
-sudo -s
-★⑦コマンド
-exit
-kubectl get nodes -o wide
-kubectl -n kube-system get pod -o wide
-```
-
-１０.各ノードへのラベル付与（Windows_TereTerm（VM（k8s環境いずれか））側操作）<br>
-```
-kubectl get nodes --show-labels
-kubectl label nodes ubuntu-101 labelname=ubuntu-101
-kubectl label nodes ubuntu-102 labelname=ubuntu-102
-kubectl label nodes ubuntu-201 labelname=ubuntu-201
-kubectl label nodes ubuntu-301 labelname=ubuntu-301
-kubectl label nodes ubuntu-302 labelname=ubuntu-302
-kubectl get nodes --show-labels
-```
-
-１１.[Helm](https://github.com/helm/helm/releases)導入（Windows_TereTerm（VM（k8s環境全て））側操作）<br>
-```
-cd ~/MyServerTest/Linux/kubernetes
-LATEST_VERSION=$(curl -s https://api.github.com/repos/helm/helm/releases/latest | grep tag_name | cut -d '"' -f 4 | sed 's/v//g')
-wget https://get.helm.sh/helm-v${LATEST_VERSION}-linux-amd64.tar.gz
-wget https://get.helm.sh/helm-v${LATEST_VERSION}-linux-arm64.tar.gz
-tar xvf helm*.tar.gz
-sudo mv linux-*/helm /usr/local/bin/
-sudo chown -R $USER:$USER ~/.kube/config
-sudo chmod 600 ~/.kube/config
-helm version --short
-sudo rm -r helm*.tar.gz
-```
-
-１２.[calico](https://docs.tigera.io/calico/latest/getting-started/kubernetes/quickstart)導入（Windows_TereTerm（VM（ubuntu-301））側操作）<br>
+０９.[calico](https://docs.tigera.io/calico/latest/getting-started/kubernetes/quickstart)導入（Windows_TereTerm（VM（ubuntu-301））側操作）<br>
 ```
 cd
 LATEST_VERSION=$(curl -s https://api.github.com/repos/projectcalico/calico/releases/latest | grep tag_name | cut -d '"' -f 4)
@@ -660,6 +624,42 @@ kubectl patch daemonset calico-node -n kube-system --type='json' -p='[
   {"name": "CALICO_IPV4POOL_CIDR", "value": "10.244.0.0/16"}}]'
 kubectl get pod,svc --all-namespaces -o wide
 sudo rm -r calico.yaml
+```
+
+１０.Worker Node側設定（Windows_TereTerm（VM（ubuntu-301以外））側操作）<br>
+```
+Master Nodeの.kubeをWorker Nodeへ配置
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+sudo -s
+★⑦コマンド
+exit
+kubectl get nodes -o wide
+kubectl -n kube-system get pod -o wide
+```
+
+１１.各ノードへのラベル付与（Windows_TereTerm（VM（k8s環境いずれか））側操作）<br>
+```
+kubectl get nodes --show-labels
+kubectl label nodes ubuntu-101 labelname=ubuntu-101
+kubectl label nodes ubuntu-102 labelname=ubuntu-102
+kubectl label nodes ubuntu-201 labelname=ubuntu-201
+kubectl label nodes ubuntu-301 labelname=ubuntu-301
+kubectl label nodes ubuntu-302 labelname=ubuntu-302
+kubectl get nodes --show-labels
+```
+
+１２.[Helm](https://github.com/helm/helm/releases)導入（Windows_TereTerm（VM（k8s環境全て））側操作）<br>
+```
+cd ~/MyServerTest/Linux/kubernetes
+LATEST_VERSION=$(curl -s https://api.github.com/repos/helm/helm/releases/latest | grep tag_name | cut -d '"' -f 4 | sed 's/v//g')
+wget https://get.helm.sh/helm-v${LATEST_VERSION}-linux-amd64.tar.gz
+wget https://get.helm.sh/helm-v${LATEST_VERSION}-linux-arm64.tar.gz
+tar xvf helm*.tar.gz
+sudo mv linux-*/helm /usr/local/bin/
+sudo chown -R $USER:$USER ~/.kube/config
+sudo chmod 600 ~/.kube/config
+helm version --short
+sudo rm -r helm*.tar.gz
 ```
 
 １３.metallb導入（Windows_TereTerm（VM（k8s環境いずれか））側操作）<br>

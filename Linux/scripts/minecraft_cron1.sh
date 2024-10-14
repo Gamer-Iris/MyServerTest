@@ -32,11 +32,11 @@ ERR_MESSAGE_05="ログローテーションに失敗しました。"
 JOB_NAME=$(basename $0 | sed -e 's/.sh//g')
 
 # 環境変数設定
-USERNAME=`cat ~/MyServer/Linux/settings/settings.yml | yq eval '.username'`
-PASSWORD=`cat ~/MyServer/Linux/settings/settings.yml | yq eval '.password'` && echo "${PASSWORD}" | sudo -S true
-KEY=`cat ~/MyServer/Linux/settings/settings.yml | yq eval '.key'`
-APPNOTICE_USER=`cat ~/MyServer/Linux/settings/settings.yml | yq eval '.appnotice.user'`
-APPNOTICE_HOST=`cat ~/MyServer/Linux/settings/settings.yml | yq eval '.appnotice.host'`
+USERNAME=`cat ~/MyServerTest/Linux/settings/settings.yml | yq eval '.username'`
+PASSWORD=`cat ~/MyServerTest/Linux/settings/settings.yml | yq eval '.password'` && echo "${PASSWORD}" | sudo -S true
+KEY=`cat ~/MyServerTest/Linux/settings/settings.yml | yq eval '.key'`
+APPNOTICE_USER=`cat ~/MyServerTest/Linux/settings/settings.yml | yq eval '.appnotice.user'`
+APPNOTICE_HOST=`cat ~/MyServerTest/Linux/settings/settings.yml | yq eval '.appnotice.host'`
 
 # 変数初期化
 RESULT=""
@@ -52,7 +52,7 @@ fi
 
 # アプリ通知関連
 JOB_NAME_APP_NOTICE="${USERNAME}"_"$(basename $0)"
-APP_NOTICE_DIR=/home/"${APPNOTICE_USER}"/MyServer/Linux/appnotice
+APP_NOTICE_DIR=/home/"${APPNOTICE_USER}"/MyServerTest/Linux/appnotice
 function appNotice () 
 {
 if [ "${USERNAME}" = "${APPNOTICE_USER}" ]; then
@@ -98,7 +98,7 @@ while true;do
       log "${JOB_NAME}"_"${NSTEP}"_START
 
       # EXEC------------------------------------------------------------------------------------------------------------------------------------------
-      RESULT=$(~/MyServer/Linux/scripts/minecraft_stop.sh)
+      RESULT=$(~/MyServerTest/Linux/scripts/minecraft_stop.sh)
       # RETURN----------------------------------------------------------------------------------------------------------------------------------------
       RTN_CD=$?
       if [ -n "${RESULT}" ]; then
@@ -201,7 +201,7 @@ while true;do
       log "${JOB_NAME}"_"${NSTEP}"_START
 
       # EXEC------------------------------------------------------------------------------------------------------------------------------------------
-      RESULT=$(~/MyServer/Linux/scripts/minecraft_start.sh)
+      RESULT=$(~/MyServerTest/Linux/scripts/minecraft_start.sh)
       # RETURN----------------------------------------------------------------------------------------------------------------------------------------
       RTN_CD=$?
       if [ -n "${RESULT}" ]; then

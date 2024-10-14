@@ -27,20 +27,20 @@ ERR_MESSAGE_02="パッチに失敗しました。"
 #*****************************************************************************************************************************************************
 # 環境変数設定
 ## DB関連
-DATABASES_OSS=`cat ~/MyServer/Linux/settings/settings.yml | yq eval '.databases.oss'`
+DATABASES_OSS=`cat ~/MyServerTest/Linux/settings/settings.yml | yq eval '.databases.oss'`
 DATABASES_OSS_LOWERCASE="${DATABASES_OSS,,}"
-DATABASES_ADDRESS=`cat ~/MyServer/Linux/settings/settings.yml | yq eval '.databases.address'`
-DATABASES_DATABASE1_DATABASENAME=`cat ~/MyServer/Linux/settings/settings.yml | yq eval '.databases.database1.databasename'`
-DATABASES_DATABASE1_USERNAME=`cat ~/MyServer/Linux/settings/settings.yml | yq eval '.databases.database1.username'`
-DATABASES_DATABASE1_PASSWORD=`cat ~/MyServer/Linux/settings/settings.yml | yq eval '.databases.database1.password'`
-DATABASES_DATABASE2_DATABASENAME=`cat ~/MyServer/Linux/settings/settings.yml | yq eval '.databases.database2.databasename'`
-DATABASES_DATABASE2_USERNAME=`cat ~/MyServer/Linux/settings/settings.yml | yq eval '.databases.database2.username'`
-DATABASES_DATABASE2_PASSWORD=`cat ~/MyServer/Linux/settings/settings.yml | yq eval '.databases.database2.password'`
-DATABASES_DATABASE3_DATABASENAME=`cat ~/MyServer/Linux/settings/settings.yml | yq eval '.databases.database3.databasename'`
-DATABASES_DATABASE3_USERNAME=`cat ~/MyServer/Linux/settings/settings.yml | yq eval '.databases.database3.username'`
-DATABASES_DATABASE3_PASSWORD=`cat ~/MyServer/Linux/settings/settings.yml | yq eval '.databases.database3.password'`
+DATABASES_ADDRESS=`cat ~/MyServerTest/Linux/settings/settings.yml | yq eval '.databases.address'`
+DATABASES_DATABASE1_DATABASENAME=`cat ~/MyServerTest/Linux/settings/settings.yml | yq eval '.databases.database1.databasename'`
+DATABASES_DATABASE1_USERNAME=`cat ~/MyServerTest/Linux/settings/settings.yml | yq eval '.databases.database1.username'`
+DATABASES_DATABASE1_PASSWORD=`cat ~/MyServerTest/Linux/settings/settings.yml | yq eval '.databases.database1.password'`
+DATABASES_DATABASE2_DATABASENAME=`cat ~/MyServerTest/Linux/settings/settings.yml | yq eval '.databases.database2.databasename'`
+DATABASES_DATABASE2_USERNAME=`cat ~/MyServerTest/Linux/settings/settings.yml | yq eval '.databases.database2.username'`
+DATABASES_DATABASE2_PASSWORD=`cat ~/MyServerTest/Linux/settings/settings.yml | yq eval '.databases.database2.password'`
+DATABASES_DATABASE3_DATABASENAME=`cat ~/MyServerTest/Linux/settings/settings.yml | yq eval '.databases.database3.databasename'`
+DATABASES_DATABASE3_USERNAME=`cat ~/MyServerTest/Linux/settings/settings.yml | yq eval '.databases.database3.username'`
+DATABASES_DATABASE3_PASSWORD=`cat ~/MyServerTest/Linux/settings/settings.yml | yq eval '.databases.database3.password'`
 ## ワークフォルダ
-WORK_DIR="${HOME}"/MyServer/Linux/kubernetes/custom/minecraft
+WORK_DIR="${HOME}"/MyServerTest/Linux/kubernetes/custom/minecraft
 ## 変換対象フォルダ
 CONVERSION_FOLDER1=/mnt/share/k8s/minecraft/proxy
 CONVERSION_FOLDER2=/mnt/share/k8s/minecraft/server1

@@ -549,10 +549,10 @@ ssh -T git@github.com
 Hi GitHubのユーザー名! You've successfully authenticated, but GitHub does not provide shell access.
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 cd
-git clone git@github.com:Gamer-Iris/MyServer.git
+git clone git@github.com:Gamer-Iris/MyServerTest.git
 sudo grep -rl "ご自分の環境に合わせてください。"
 "ご自分の環境に合わせてください。"の文言資材を適宜修正
-sudo chmod 775 ~/MyServer/Linux/scripts/*
+sudo chmod 775 ~/MyServerTest/Linux/scripts/*
 ```
 
 ０６.docker導入（Windows_TereTerm（VM（k8s環境全て））側操作）<br>
@@ -635,7 +635,7 @@ kubectl get nodes --show-labels
 
 １１.[Helm](https://github.com/helm/helm/releases)導入（Windows_TereTerm（VM（k8s環境全て））側操作）<br>
 ```
-cd ~/MyServer/Linux/kubernetes
+cd ~/MyServerTest/Linux/kubernetes
 LATEST_VERSION=$(curl -s https://api.github.com/repos/helm/helm/releases/latest | grep tag_name | cut -d '"' -f 4 | sed 's/v//g')
 wget https://get.helm.sh/helm-v${LATEST_VERSION}-linux-amd64.tar.gz
 wget https://get.helm.sh/helm-v${LATEST_VERSION}-linux-arm64.tar.gz
@@ -667,15 +667,15 @@ sudo rm -r calico.yaml
 helm repo add metallb https://metallb.github.io/metallb
 helm repo update
 helm search repo metallb
-kubectl apply -f ~/MyServer/Linux/kubernetes/custom/metallb/metallb-namespace.yml
+kubectl apply -f ~/MyServerTest/Linux/kubernetes/custom/metallb/metallb-namespace.yml
 helm install metallb metallb/metallb -n metallb-system
-kubectl apply -f ~/MyServer/Linux/kubernetes/custom/metallb/metallb-config.yml
+kubectl apply -f ~/MyServerTest/Linux/kubernetes/custom/metallb/metallb-config.yml
 kubectl get pods -n metallb-system -o wide
 ```
 
 １４.CoreDNS設定①（Windows_TereTerm（VM（k8s環境いずれか））側操作）<br>
 ```
-kubectl apply -f ~/MyServer/Linux/kubernetes/custom/coredns/coredns-configmap.yml
+kubectl apply -f ~/MyServerTest/Linux/kubernetes/custom/coredns/coredns-configmap.yml
 kubectl delete pod -n kube-system -l k8s-app=kube-dns
 sudo reboot
 kubectl get pods -n kube-system -o wide
@@ -745,9 +745,9 @@ rm -fr ~/mcrcon
 
 １８.[Cloudflare](https://dash.cloudflare.com/login)設定（Windows_TereTerm（VM（ubuntu-102））側操作）<br>
 ```
-kubectl apply -f ~/MyServer/Linux/kubernetes/custom/cloudflare/cloudflare-namespace.yml
-kubectl apply -f ~/MyServer/Linux/kubernetes/custom/cloudflare/cloudflare-secret.yml
-kubectl apply -f ~/MyServer/Linux/kubernetes/custom/cloudflare/cloudflare-deployment.yml
+kubectl apply -f ~/MyServerTest/Linux/kubernetes/custom/cloudflare/cloudflare-namespace.yml
+kubectl apply -f ~/MyServerTest/Linux/kubernetes/custom/cloudflare/cloudflare-secret.yml
+kubectl apply -f ~/MyServerTest/Linux/kubernetes/custom/cloudflare/cloudflare-deployment.yml
 kubectl get pods -n cloudflare -o wide
 Cloudflareにログイン後、適宜設定
 ```
@@ -777,22 +777,22 @@ showmount -e
 
 ２１.sc/pv/pvcのデプロイ（Windows_TereTerm（VM（k8s環境いずれか））側操作）<br>
 ```
-kubectl apply -f ~/MyServer/Linux/kubernetes/custom/mariadb-phpmyadmin/mariadb-phpmyadmin-namespace.yml
-kubectl apply -f ~/MyServer/Linux/kubernetes/custom/mariadb-phpmyadmin/nfs-sc-mariadb-phpmyadmin.yml
-kubectl apply -f ~/MyServer/Linux/kubernetes/custom/mariadb-phpmyadmin/nfs-pv-mariadb-phpmyadmin.yml \
-  -f ~/MyServer/Linux/kubernetes/custom/mariadb-phpmyadmin/nfs-pvc-mariadb-phpmyadmin.yml
-kubectl apply -f ~/MyServer/Linux/kubernetes/custom/minecraft/minecraft-namespace.yml
-kubectl apply -f ~/MyServer/Linux/kubernetes/custom/minecraft/nfs-sc-minecraft.yml
-kubectl apply -f ~/MyServer/Linux/kubernetes/custom/minecraft/nfs-pv-minecraft.yml \
-  -f ~/MyServer/Linux/kubernetes/custom/minecraft/nfs-pvc-minecraft.yml
-kubectl apply -f ~/MyServer/Linux/kubernetes/custom/monitoring/monitoring-namespace.yml
-kubectl apply -f ~/MyServer/Linux/kubernetes/custom/monitoring/nfs-sc-monitoring.yml
-kubectl apply -f ~/MyServer/Linux/kubernetes/custom/monitoring/nfs-pv-monitoring.yml \
-  -f ~/MyServer/Linux/kubernetes/custom/monitoring/nfs-pvc-monitoring.yml
-kubectl apply -f ~/MyServer/Linux/kubernetes/custom/wordpress/wordpress-namespace.yml
-kubectl apply -f ~/MyServer/Linux/kubernetes/custom/wordpress/nfs-sc-wordpress.yml
-kubectl apply -f ~/MyServer/Linux/kubernetes/custom/wordpress/nfs-pv-wordpress.yml \
-  -f ~/MyServer/Linux/kubernetes/custom/wordpress/nfs-pvc-wordpress.yml
+kubectl apply -f ~/MyServerTest/Linux/kubernetes/custom/mariadb-phpmyadmin/mariadb-phpmyadmin-namespace.yml
+kubectl apply -f ~/MyServerTest/Linux/kubernetes/custom/mariadb-phpmyadmin/nfs-sc-mariadb-phpmyadmin.yml
+kubectl apply -f ~/MyServerTest/Linux/kubernetes/custom/mariadb-phpmyadmin/nfs-pv-mariadb-phpmyadmin.yml \
+  -f ~/MyServerTest/Linux/kubernetes/custom/mariadb-phpmyadmin/nfs-pvc-mariadb-phpmyadmin.yml
+kubectl apply -f ~/MyServerTest/Linux/kubernetes/custom/minecraft/minecraft-namespace.yml
+kubectl apply -f ~/MyServerTest/Linux/kubernetes/custom/minecraft/nfs-sc-minecraft.yml
+kubectl apply -f ~/MyServerTest/Linux/kubernetes/custom/minecraft/nfs-pv-minecraft.yml \
+  -f ~/MyServerTest/Linux/kubernetes/custom/minecraft/nfs-pvc-minecraft.yml
+kubectl apply -f ~/MyServerTest/Linux/kubernetes/custom/monitoring/monitoring-namespace.yml
+kubectl apply -f ~/MyServerTest/Linux/kubernetes/custom/monitoring/nfs-sc-monitoring.yml
+kubectl apply -f ~/MyServerTest/Linux/kubernetes/custom/monitoring/nfs-pv-monitoring.yml \
+  -f ~/MyServerTest/Linux/kubernetes/custom/monitoring/nfs-pvc-monitoring.yml
+kubectl apply -f ~/MyServerTest/Linux/kubernetes/custom/wordpress/wordpress-namespace.yml
+kubectl apply -f ~/MyServerTest/Linux/kubernetes/custom/wordpress/nfs-sc-wordpress.yml
+kubectl apply -f ~/MyServerTest/Linux/kubernetes/custom/wordpress/nfs-pv-wordpress.yml \
+  -f ~/MyServerTest/Linux/kubernetes/custom/wordpress/nfs-pvc-wordpress.yml
 kubectl get sc -o wide
 kubectl get pv,pvc -n mariadb-phpmyadmin -o wide
 kubectl get pv,pvc -n minecraft -o wide
@@ -807,7 +807,7 @@ helm repo update
 helm search repo prometheus-community/kube-prometheus-stack
 helm install prometheus prometheus-community/kube-prometheus-stack -n monitoring
 helm upgrade prometheus prometheus-community/kube-prometheus-stack -n monitoring \
-  -f ~/MyServer/Linux/kubernetes/custom/monitoring/monitoring-custom.yml
+  -f ~/MyServerTest/Linux/kubernetes/custom/monitoring/monitoring-custom.yml
 kubectl get serviceMonitor -n monitoring
 kubectl -n monitoring delete serviceMonitor prometheus-kube-prometheus-kube-etcd
 kubectl -n monitoring delete serviceMonitor prometheus-kube-prometheus-kube-controller-manager
@@ -828,9 +828,9 @@ grafana表示内容にてログイン
 
 ２３.DBツール一式導入（Windows_TereTerm（VM（ubuntu-102））側操作）<br>
 ```
-kubectl apply -f ~/MyServer/Linux/kubernetes/custom/mariadb-phpmyadmin/mariadb-phpmyadmin-secret.yml
-kubectl apply -f ~/MyServer/Linux/kubernetes/custom/mariadb-phpmyadmin/mariadb-phpmyadmin-mariadb-deployment.yml
-kubectl apply -f ~/MyServer/Linux/kubernetes/custom/mariadb-phpmyadmin/mariadb-phpmyadmin-phpmyadmin-deployment.yml
+kubectl apply -f ~/MyServerTest/Linux/kubernetes/custom/mariadb-phpmyadmin/mariadb-phpmyadmin-secret.yml
+kubectl apply -f ~/MyServerTest/Linux/kubernetes/custom/mariadb-phpmyadmin/mariadb-phpmyadmin-mariadb-deployment.yml
+kubectl apply -f ~/MyServerTest/Linux/kubernetes/custom/mariadb-phpmyadmin/mariadb-phpmyadmin-phpmyadmin-deployment.yml
 kubectl get pods -n mariadb-phpmyadmin -o wide
 kubectl get svc -n mariadb-phpmyadmin -o wide
 phpmyadmin表示内容にてログイン
@@ -848,8 +848,8 @@ rootユーザーにて、以下を設定
 
 ２４.[WordPress](https://wordpress.com/ja)導入（Windows_TereTerm（VM（ubuntu-102））側操作）<br>
 ```
-kubectl apply -f ~/MyServer/Linux/kubernetes/custom/wordpress/wordpress-secret.yml
-kubectl apply -f ~/MyServer/Linux/kubernetes/custom/wordpress/wordpress-deployment.yml
+kubectl apply -f ~/MyServerTest/Linux/kubernetes/custom/wordpress/wordpress-secret.yml
+kubectl apply -f ~/MyServerTest/Linux/kubernetes/custom/wordpress/wordpress-deployment.yml
 kubectl get pods -n wordpress -o wide
 kubectl get svc -n wordpress -o wide
 wordpress表示内容にてログイン
@@ -869,12 +869,12 @@ WPvivid（https://wordpress.org/plugins/wpvivid-backuprestore/）を導入
 
 ２５.minecraft導入（Windows_TereTerm（VM（ubuntu-102）及びminecraft）側操作）<br>
 ```
-~/MyServer/Linux/scripts/minecraft_start.sh
+~/MyServerTest/Linux/scripts/minecraft_start.sh
 ls -l /mnt/share/k8s/minecraft/proxy/config.yml
 ls -l /mnt/share/k8s/minecraft/server1/spigot.yml
 ls -l /mnt/share/k8s/minecraft/server2/spigot.yml
-~/MyServer/Linux/scripts/minecraft_stop.sh
-~/MyServer/Linux/scripts/minecraft_conversion1.sh
+~/MyServerTest/Linux/scripts/minecraft_stop.sh
+~/MyServerTest/Linux/scripts/minecraft_conversion1.sh
 
 【BungeeCord】
 cd /mnt/share/k8s/minecraft/proxy
@@ -910,7 +910,7 @@ WorldGuard（https://dev.bukkit.org/projects/worldguard/）
 /mnt/share/k8s/minecraft/server1/plugins
 /mnt/share/k8s/minecraft/server2/plugins
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-~/MyServer/Linux/scripts/minecraft_start.sh
+~/MyServerTest/Linux/scripts/minecraft_start.sh
 ls -l /mnt/share/k8s/minecraft/server1/plugins/BlueMap/core.conf
 ls -l /mnt/share/k8s/minecraft/server2/plugins/BlueMap/core.conf
 ls -l /mnt/share/k8s/minecraft/server1/plugins/BlueMap/maps/*.conf
@@ -924,8 +924,8 @@ ls -l /mnt/share/k8s/minecraft/server1/plugins/LuckPerms/config.yml
 ls -l /mnt/share/k8s/minecraft/server2/plugins/LuckPerms/config.yml
 ls -l /mnt/share/k8s/minecraft/server1/plugins/LunaChat/config.yml
 ls -l /mnt/share/k8s/minecraft/server2/plugins/LunaChat/config.yml
-~/MyServer/Linux/scripts/minecraft_stop.sh
-~/MyServer/Linux/scripts/minecraft_conversion2.sh
+~/MyServerTest/Linux/scripts/minecraft_stop.sh
+~/MyServerTest/Linux/scripts/minecraft_conversion2.sh
 
 【BlueMap】
 cd /mnt/share/k8s/minecraft/server1/plugins/BlueMap
@@ -983,15 +983,15 @@ diff config.yml_bk config.yml
 （差分が期待した内容かを確認）
 
 【resourceワールドのバックアップ作成】
-~/MyServer/Linux/scripts/minecraft_start.sh
+~/MyServerTest/Linux/scripts/minecraft_start.sh
 OP権限を持ったアカウントでMinecraftに入る
 必要に応じて環境設定操作①（https://github.com/Gamer-Iris/Minecraft）を実施
-~/MyServer/Linux/scripts/minecraft_stop.sh
+~/MyServerTest/Linux/scripts/minecraft_stop.sh
 cd /mnt/share/k8s/minecraft/server1
 tar -czvf server1_resources_backup.tgz -C /mnt/share/k8s/minecraft/server1 resource resource_nether resource_the_end
 cd /mnt/share/k8s/minecraft/server2
 tar -czvf server2_resources_backup.tgz -C /mnt/share/k8s/minecraft/server2 resource resource_nether resource_the_end
-~/MyServer/Linux/scripts/minecraft_start.sh
+~/MyServerTest/Linux/scripts/minecraft_start.sh
 ```
 
 ２６.crontab設定（Windows_TereTerm（Node、VM）側操作）<br>
@@ -1004,26 +1004,26 @@ crontab -e
 # パス設定
 PATH=/bin/bash:/usr/local/sbin:/usr/bin:/bin:/usr/local/bin:/snap/bin
 # JOB_NET設定
-00 0 * * 2 ~/MyServer/Linux/scripts/update.sh
+00 0 * * 2 ~/MyServerTest/Linux/scripts/update.sh
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # VM（ubuntu-101、ubuntu-201、ubuntu-301）
 # パス設定
 PATH=/bin/bash:/usr/local/sbin:/usr/bin:/bin:/usr/local/bin:/snap/bin
 # JOB_NET設定
-00 1 * * 2 ~/MyServer/Linux/scripts/update.sh
+00 1 * * 2 ~/MyServerTest/Linux/scripts/update.sh
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # VM（ubuntu-102）
 # パス設定
 PATH=/bin/bash:/usr/local/sbin:/usr/bin:/bin:/usr/local/bin:/snap/bin
 # JOB_NET設定
-00 2 * * 2 ~/MyServer/Linux/scripts/minecraft_cron1.sh && ~/MyServer/Linux/scripts/update.sh
+00 2 * * 2 ~/MyServerTest/Linux/scripts/minecraft_cron1.sh && ~/MyServerTest/Linux/scripts/update.sh
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # VM（ubuntu-302）
 # パス設定
 PATH=/bin/bash:/usr/local/sbin:/usr/bin:/bin:/usr/local/bin:/snap/bin
 # JOB_NET設定
-00 2 * * 2 ~/MyServer/Linux/scripts/update.sh
-00 6,18 * * * ~/MyServer/Linux/scripts/minecraft_cron2.sh
+00 2 * * 2 ~/MyServerTest/Linux/scripts/update.sh
+00 6,18 * * * ~/MyServerTest/Linux/scripts/minecraft_cron2.sh
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 systemctl status cron.service
 sudo service cron start
@@ -1127,19 +1127,19 @@ sudo logrotate -d /etc/logrotate.conf
     tail -f /mnt/share/k8s/minecraft/server2/logs/latest.log
 ～サーバー起動～
     （ubuntu-102で作業）
-    ~/MyServer/Linux/scripts/minecraft_start.sh
+    ~/MyServerTest/Linux/scripts/minecraft_start.sh
 ～サーバー停止～
     （ubuntu-102で作業）
-    ~/MyServer/Linux/scripts/minecraft_stop.sh
+    ~/MyServerTest/Linux/scripts/minecraft_stop.sh
 ～サーバーコマンド実施～
     （ubuntu-302で作業）
     mcrcon -H minecraft.server1.com -P 25575 -p パスワード -t
     mcrcon -H minecraft.server2.com -P 25575 -p パスワード -t
 ～サーバーのバージョンアップ対応～
     【ymlファイル編集】
-    ~/MyServer/Linux/scripts/minecraft_stop.sh
+    ~/MyServerTest/Linux/scripts/minecraft_stop.sh
     「/mnt/share/k8s/minecraft」上の「proxy」「server1」「server2」のバックアップを取得
-    cd /home/ubuntu-102/MyServer/Linux/kubernetes/custom/minecraft
+    cd /home/ubuntu-102/MyServerTest/Linux/kubernetes/custom/minecraft
     sudo nano minecraft-deployment.yml
     +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     希望のバージョンを指定
@@ -1150,12 +1150,12 @@ sudo logrotate -d /etc/logrotate.conf
     sudo rm -r .[^.]* *
     cd /mnt/share/k8s/minecraft/server2
     sudo rm -r .[^.]* *
-    ~/MyServer/Linux/scripts/minecraft_start.sh
+    ~/MyServerTest/Linux/scripts/minecraft_start.sh
     ls -l /mnt/share/k8s/minecraft/proxy/config.yml
     ls -l /mnt/share/k8s/minecraft/server1/spigot.yml
     ls -l /mnt/share/k8s/minecraft/server2/spigot.yml
-    ~/MyServer/Linux/scripts/minecraft_stop.sh
-    ~/MyServer/Linux/scripts/minecraft_conversion1.sh
+    ~/MyServerTest/Linux/scripts/minecraft_stop.sh
+    ~/MyServerTest/Linux/scripts/minecraft_conversion1.sh
 
     【BungeeCord】
     cd /mnt/share/k8s/minecraft/proxy
@@ -1191,7 +1191,7 @@ sudo logrotate -d /etc/logrotate.conf
     /mnt/share/k8s/minecraft/server1/plugins
     /mnt/share/k8s/minecraft/server2/plugins
     +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    ~/MyServer/Linux/scripts/minecraft_start.sh
+    ~/MyServerTest/Linux/scripts/minecraft_start.sh
     ls -l /mnt/share/k8s/minecraft/server1/plugins/BlueMap/core.conf
     ls -l /mnt/share/k8s/minecraft/server2/plugins/BlueMap/core.conf
     ls -l /mnt/share/k8s/minecraft/server1/plugins/BlueMap/maps/*.conf
@@ -1205,8 +1205,8 @@ sudo logrotate -d /etc/logrotate.conf
     ls -l /mnt/share/k8s/minecraft/server2/plugins/LuckPerms/config.yml
     ls -l /mnt/share/k8s/minecraft/server1/plugins/LunaChat/config.yml
     ls -l /mnt/share/k8s/minecraft/server2/plugins/LunaChat/config.yml
-    ~/MyServer/Linux/scripts/minecraft_stop.sh
-    ~/MyServer/Linux/scripts/minecraft_conversion2.sh
+    ~/MyServerTest/Linux/scripts/minecraft_stop.sh
+    ~/MyServerTest/Linux/scripts/minecraft_conversion2.sh
 
     【BlueMap】
     cd /mnt/share/k8s/minecraft/server1/plugins/BlueMap
@@ -1265,15 +1265,15 @@ sudo logrotate -d /etc/logrotate.conf
     （差分が期待した内容かを確認）
 
     【resourceワールドのバックアップ作成】
-    ~/MyServer/Linux/scripts/minecraft_start.sh
+    ~/MyServerTest/Linux/scripts/minecraft_start.sh
     OP権限を持ったアカウントでMinecraftに入る
     必要に応じて環境設定操作①（https://github.com/Gamer-Iris/Minecraft）を実施
-    ~/MyServer/Linux/scripts/minecraft_stop.sh
+    ~/MyServerTest/Linux/scripts/minecraft_stop.sh
     cd /mnt/share/k8s/minecraft/server1
     tar -czvf server1_resources_backup.tgz -C /mnt/share/k8s/minecraft/server1 resource resource_nether resource_the_end
     cd /mnt/share/k8s/minecraft/server2
     tar -czvf server2_resources_backup.tgz -C /mnt/share/k8s/minecraft/server2 resource resource_nether resource_the_end
-    ~/MyServer/Linux/scripts/minecraft_start.sh
+    ~/MyServerTest/Linux/scripts/minecraft_start.sh
 ```
 </details>
 </details>

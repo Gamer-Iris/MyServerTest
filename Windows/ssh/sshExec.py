@@ -24,8 +24,8 @@ import yaml
 ######################################################################################################################################################
 # ssh関連のコマンド定数
 SSH_CMD_APP_NOTICE1       = "PASSWORD=`cat /home/"
-SSH_CMD_APP_NOTICE2       = "/MyServer/Linux/settings/settings.yml | yq eval '.password'` && cd /home/"
-SSH_CMD_APP_NOTICE3       = "/MyServer/Linux/appnotice && echo $PASSWORD | sudo -S python3 ./appNotice.py"
+SSH_CMD_APP_NOTICE2       = "/MyServerTest/Linux/settings/settings.yml | yq eval '.password'` && cd /home/"
+SSH_CMD_APP_NOTICE3       = "/MyServerTest/Linux/appnotice && echo $PASSWORD | sudo -S python3 ./appNotice.py"
 SSH_CMD_SPACE             = " "
 
 

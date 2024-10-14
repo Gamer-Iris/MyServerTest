@@ -31,13 +31,13 @@ ERR_MESSAGE_01="コマンド実行に失敗しました。"
 JOB_NAME=$(basename $0 | sed -e 's/.sh//g')
 
 # 環境変数設定
-USERNAME=`cat ~/MyServer/Linux/settings/settings.yml | yq eval '.username'`
-PASSWORD=`cat ~/MyServer/Linux/settings/settings.yml | yq eval '.password'` && echo "${PASSWORD}" | sudo -S true
-KEY=`cat ~/MyServer/Linux/settings/settings.yml | yq eval '.key'`
-APPNOTICE_USER=`cat ~/MyServer/Linux/settings/settings.yml | yq eval '.appnotice.user'`
-APPNOTICE_HOST=`cat ~/MyServer/Linux/settings/settings.yml | yq eval '.appnotice.host'`
-NFS_USER=`cat ~/MyServer/Linux/settings/settings.yml | yq eval '.nfs.user'`
-NFS_HOST=`cat ~/MyServer/Linux/settings/settings.yml | yq eval '.nfs.host'`
+USERNAME=`cat ~/MyServerTest/Linux/settings/settings.yml | yq eval '.username'`
+PASSWORD=`cat ~/MyServerTest/Linux/settings/settings.yml | yq eval '.password'` && echo "${PASSWORD}" | sudo -S true
+KEY=`cat ~/MyServerTest/Linux/settings/settings.yml | yq eval '.key'`
+APPNOTICE_USER=`cat ~/MyServerTest/Linux/settings/settings.yml | yq eval '.appnotice.user'`
+APPNOTICE_HOST=`cat ~/MyServerTest/Linux/settings/settings.yml | yq eval '.appnotice.host'`
+NFS_USER=`cat ~/MyServerTest/Linux/settings/settings.yml | yq eval '.nfs.user'`
+NFS_HOST=`cat ~/MyServerTest/Linux/settings/settings.yml | yq eval '.nfs.host'`
 RCON_PASSWORD_01=`ssh -i "${KEY}" "${NFS_USER}"@"${NFS_HOST}" "grep "rcon.password" /mnt/share/k8s/minecraft/server1/server.properties | cut -d'=' -f2"`
 RCON_PASSWORD_02=`ssh -i "${KEY}" "${NFS_USER}"@"${NFS_HOST}" "grep "rcon.password" /mnt/share/k8s/minecraft/server2/server.properties | cut -d'=' -f2"`
 
@@ -55,7 +55,7 @@ fi
 
 # アプリ通知関連
 JOB_NAME_APP_NOTICE="${USERNAME}"_"$(basename $0)"
-APP_NOTICE_DIR=/home/"${APPNOTICE_USER}"/MyServer/Linux/appnotice
+APP_NOTICE_DIR=/home/"${APPNOTICE_USER}"/MyServerTest/Linux/appnotice
 function appNotice () 
 {
 if [ "${USERNAME}" = "${APPNOTICE_USER}" ]; then

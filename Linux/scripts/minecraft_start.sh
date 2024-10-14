@@ -29,11 +29,11 @@ ERR_MESSAGE_02="サーバー起動がタイムアウトしました。"
 JOB_NAME=$(basename $0 | sed -e 's/.sh//g')
 
 # 環境変数設定
-USERNAME=`cat ~/MyServer/Linux/settings/settings.yml | yq eval '.username'`
-PASSWORD=`cat ~/MyServer/Linux/settings/settings.yml | yq eval '.password'` && echo "${PASSWORD}" | sudo -S true
-KEY=`cat ~/MyServer/Linux/settings/settings.yml | yq eval '.key'`
-APPNOTICE_USER=`cat ~/MyServer/Linux/settings/settings.yml | yq eval '.appnotice.user'`
-APPNOTICE_HOST=`cat ~/MyServer/Linux/settings/settings.yml | yq eval '.appnotice.host'`
+USERNAME=`cat ~/MyServerTest/Linux/settings/settings.yml | yq eval '.username'`
+PASSWORD=`cat ~/MyServerTest/Linux/settings/settings.yml | yq eval '.password'` && echo "${PASSWORD}" | sudo -S true
+KEY=`cat ~/MyServerTest/Linux/settings/settings.yml | yq eval '.key'`
+APPNOTICE_USER=`cat ~/MyServerTest/Linux/settings/settings.yml | yq eval '.appnotice.user'`
+APPNOTICE_HOST=`cat ~/MyServerTest/Linux/settings/settings.yml | yq eval '.appnotice.host'`
 TIMEOUT_DURATION=300
 START_TIME=$(date +%s)
 END_TIME=$((START_TIME + TIMEOUT_DURATION)) 
@@ -55,7 +55,7 @@ fi
 
 # アプリ通知関連
 JOB_NAME_APP_NOTICE="${USERNAME}"_"$(basename $0)"
-APP_NOTICE_DIR=/home/"${APPNOTICE_USER}"/MyServer/Linux/appnotice
+APP_NOTICE_DIR=/home/"${APPNOTICE_USER}"/MyServerTest/Linux/appnotice
 function appNotice () 
 {
 if [ "${USERNAME}" = "${APPNOTICE_USER}" ]; then
@@ -105,8 +105,8 @@ while true;do
       log "${JOB_NAME}"_"${NSTEP}"_START
 
       # EXEC------------------------------------------------------------------------------------------------------------------------------------------
-      RESULT=$(kubectl apply -f ~/MyServer/Linux/kubernetes/custom/minecraft/minecraft-proxy.yml && \
-               kubectl apply -f ~/MyServer/Linux/kubernetes/custom/minecraft/minecraft-deployment.yml)
+      RESULT=$(kubectl apply -f ~/MyServerTest/Linux/kubernetes/custom/minecraft/minecraft-proxy.yml && \
+               kubectl apply -f ~/MyServerTest/Linux/kubernetes/custom/minecraft/minecraft-deployment.yml)
       # RETURN----------------------------------------------------------------------------------------------------------------------------------------
       RTN_CD=$?
       if [ -n "${RESULT}" ]; then

@@ -27,7 +27,7 @@ ERR_MESSAGE_02="パッチに失敗しました。"
 #*****************************************************************************************************************************************************
 # 環境変数設定
 ## ワークフォルダ
-WORK_DIR="${HOME}"/MyServer/Linux/kubernetes/custom/minecraft
+WORK_DIR="${HOME}"/MyServerTest/Linux/kubernetes/custom/minecraft
 ## 変換対象フォルダ
 CONVERSION_FOLDER1=/mnt/share/k8s/minecraft/proxy
 CONVERSION_FOLDER2=/mnt/share/k8s/minecraft/server1

@@ -1,23 +1,25 @@
 apiVersion: argoproj.io/v1alpha1
-kind: Application
+kind: ApplicationSet
 metadata:
-  name: sealed-secrets
+  name: apps
   namespace: argocd
 spec:
-  project: default
-  source:
-    repoURL: 'https://charts.bitnami.com/bitnami'
-    chart: sealed-secrets
-    targetRevision: HEAD
-    helm:
-      parameters:
-        - name: nodeSelector
-          value: |
-            node-type: ubuntu-302
-  destination:
-    server: 'https://kubernetes.default.svc'
-    namespace: sealed-secrets
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+  generators:
+    - directory:
+        path: apps
+  template:
+    metadata:
+      name: '{{path}}'
+    spec:
+      project: default
+      source:
+        repoURL: 'git@github.com:Gamer-Iris/MyServerTest.git'
+        targetRevision: HEAD
+        path: '{{path}}'
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: '{{path}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true

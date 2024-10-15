@@ -17,5 +17,5 @@ spec:
         labelname: ubuntu-302
       containers:
       - name: kubeseal
-        image: bitnami/kubeseal:latest
+        image: bitnami/sealed-secrets-kubeseal:latest
         command: ["sleep", "infinity"]

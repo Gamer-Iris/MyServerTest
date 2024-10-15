@@ -6,7 +6,7 @@ metadata:
   name: sealed-secrets-controller
 rules:
 - apiGroups: [""]
-  resources: ["secrets", "services"]
+  resources: ["secrets", "services", "services/proxy"]
   verbs: ["get", "list", "watch", "create", "update", "delete"]
 - apiGroups: ["bitnami.com"]
   resources: ["sealedsecrets"]

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubeseal
+  namespace: kube-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kubeseal
+  template:
+    metadata:
+      labels:
+        app: kubeseal
+    spec:
+      nodeSelector:
+        labelname: ubuntu-302
+      containers:
+      - name: kubeseal
+        image: bitnami/kubeseal:latest
+        command: ["sleep", "infinity"]

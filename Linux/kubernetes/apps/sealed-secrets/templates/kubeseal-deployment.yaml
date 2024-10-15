@@ -13,8 +13,6 @@ spec:
       labels:
         app: kubeseal
     spec:
-      nodeSelector:
-        labelname: ubuntu-302
       containers:
       - name: kubeseal
         image: bitnami/sealed-secrets-kubeseal:latest

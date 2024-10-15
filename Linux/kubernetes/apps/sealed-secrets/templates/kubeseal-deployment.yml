@@ -18,4 +18,3 @@ spec:
       containers:
       - name: kubeseal
         image: bitnami/sealed-secrets-kubeseal:latest
-        command: ["sleep", "infinity"]

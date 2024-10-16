@@ -1,6 +1,25 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  name: cloudflare
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'git@github.com:Gamer-Iris/MyServerTest.git'
+    targetRevision: HEAD
+    path: './Linux/kubernetes/apps/cloudflare'
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: kube-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
   name: sealed-secrets
   namespace: argocd
 spec:

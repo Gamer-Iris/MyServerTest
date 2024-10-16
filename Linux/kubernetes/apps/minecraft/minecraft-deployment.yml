@@ -33,9 +33,9 @@ spec:
         - name: WHITELIST
           value: "GamerIris77"                    # 接続可能ユーザー名の設定（ご自分の環境に合わせてください。）
         - name: LEVEL
-          value: "1.20.6"                         # バージョンの設定（ご自分の環境に合わせてください。）
+          value: "1.21.1"                         # バージョンの設定（ご自分の環境に合わせてください。）
         - name: VERSION
-          value: "1.20.6"                         # バージョンの設定（ご自分の環境に合わせてください。）
+          value: "1.21.1"                         # バージョンの設定（ご自分の環境に合わせてください。）
         - name: DIFFICULTY
           value: "hard"                           # World生成時の難易度の設定
         - name: ENFORCE_SECURE_PROFILE

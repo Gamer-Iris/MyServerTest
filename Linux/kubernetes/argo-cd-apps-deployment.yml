@@ -4,7 +4,7 @@ metadata:
   name: cloudflare
   namespace: argocd
 spec:
-  project: cloudflare
+  project: default
   source:
     repoURL: 'git@github.com:Gamer-Iris/MyServerTest.git'
     targetRevision: HEAD
@@ -23,7 +23,7 @@ metadata:
   name: coredns
   namespace: argocd
 spec:
-  project: coredns
+  project: default
   source:
     repoURL: 'git@github.com:Gamer-Iris/MyServerTest.git'
     targetRevision: HEAD
@@ -42,7 +42,7 @@ metadata:
   name: sealed-secrets
   namespace: argocd
 spec:
-  project: sealed-secrets
+  project: default
   source:
     repoURL: 'git@github.com:Gamer-Iris/MyServerTest.git'
     targetRevision: HEAD

@@ -513,9 +513,9 @@ sudo ufw status
 ０５.GitHub設定（Windows_TereTerm（Node、VM）側操作）<br>
 ```
 sudo apt install -y git
-sudo git config --global user.name "自分の名前"
-sudo git config --global user.email 自分のアドレス
-sudo git config --list
+git config --global user.name "自分の名前"
+git config --global user.email 自分のアドレス
+git config --list
 cd .ssh
 sudo ssh-keygen -t rsa
 以下を入力

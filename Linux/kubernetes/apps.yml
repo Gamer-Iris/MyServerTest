@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: 'git@github.com:Gamer-Iris/MyServerTest.git'
     targetRevision: HEAD
-    path: 'apps/sealed-secrets'
+    path: './Linux/kubernetes/apps/sealed-secrets'
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: kube-system

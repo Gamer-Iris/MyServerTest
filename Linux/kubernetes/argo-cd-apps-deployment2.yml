@@ -115,25 +115,6 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: sealed-secrets
-  namespace: argocd
-spec:
-  project: default
-  source:
-    repoURL: 'git@github.com:Gamer-Iris/MyServerTest.git'
-    targetRevision: HEAD
-    path: './Linux/kubernetes/apps/sealed-secrets'
-  destination:
-    server: 'https://kubernetes.default.svc'
-    namespace: sealed-secrets
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
   name: wordpress
   namespace: argocd
 spec:

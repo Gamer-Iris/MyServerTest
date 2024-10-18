@@ -9,10 +9,6 @@ spec:
     repoURL: 'git@github.com:Gamer-Iris/MyServerTest.git'
     targetRevision: HEAD
     path: './Linux/kubernetes/apps/sealed-secrets'
-    helm:
-      parameters:
-        - name: nodeSelector
-          value: ubuntu-302
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: sealed-secrets

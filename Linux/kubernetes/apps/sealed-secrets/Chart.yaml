@@ -1,0 +1,3 @@
+apiVersion: v2
+name: sealed-secrets
+description: A Helm chart for Kubernetes Sealed Secrets

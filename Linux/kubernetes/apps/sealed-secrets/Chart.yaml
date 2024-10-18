@@ -1,4 +1,4 @@
 apiVersion: v2
 name: sealed-secrets
-description: A Helm chart for Kubernetes Sealed Secrets
-version: 1.0.0
+description: A Helm chart for Sealed Secrets
+version: 0.1.0

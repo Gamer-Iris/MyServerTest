@@ -118,7 +118,7 @@ spec:
           value: 'LoadBalancer'
         - name: alertmanager.alertmanagerSpec.storage.volumeClaimTemplate.spec.storageClassName
           value: 'alertmanager-nfs-storage-class'
-        - name: alertmanager.alertmanagerSpec.storage.volumeClaimTemplate.spec.accessModes
+        - name: alertmanager.alertmanagerSpec.storage.volumeClaimTemplate.spec.accessModes[0]
           value: ReadWriteOnce
         - name: alertmanager.alertmanagerSpec.storage.volumeClaimTemplate.spec.resources.requests.storage
           value: '1Gi'
@@ -132,7 +132,7 @@ spec:
           value: 'pvc'
         - name: grafana.persistence.storageClassName
           value: 'grafana-nfs-storage-class'
-        - name: grafana.persistence.accessModes
+        - name: grafana.persistence.accessModes[0]
           value: ReadWriteOnce
         - name: grafana.persistence.size
           value: '1Gi'
@@ -170,7 +170,7 @@ spec:
           value: 'ubuntu-302'
         - name: prometheus.prometheusSpec.storageSpec.volumeClaimTemplate.spec.storageClassName
           value: 'prometheus-nfs-storage-class'
-        - name: prometheus.prometheusSpec.storageSpec.volumeClaimTemplate.spec.accessModes
+        - name: prometheus.prometheusSpec.storageSpec.volumeClaimTemplate.spec.accessModes[0]
           value: ReadWriteOnce
         - name: prometheus.prometheusSpec.storageSpec.volumeClaimTemplate.spec.resources.requests.storage
           value: '1Gi'

@@ -104,6 +104,9 @@ spec:
     repoURL: 'git@github.com:Gamer-Iris/MyServerTest.git'
     targetRevision: HEAD
     path: './Linux/kubernetes/apps/monitoring'
+    helm:
+      valueFiles:
+        - values.yaml
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: monitoring

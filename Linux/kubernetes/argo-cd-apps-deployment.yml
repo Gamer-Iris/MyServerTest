@@ -137,7 +137,8 @@ spec:
         - name: grafana.persistence.size
           value: '1Gi'
         - name: grafana.persistence.finalizers
-          value: '["kubernetes.io/pvc-protection"]'
+          value: |
+            - kubernetes.io/pvc-protection
         - name: grafana.initChownData.enabled
           value: 'false'
         - name: grafana.defaultDashboardsTimezone

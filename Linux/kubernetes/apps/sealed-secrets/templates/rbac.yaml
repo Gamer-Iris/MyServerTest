@@ -17,7 +17,7 @@ metadata:
   name: sealed-secrets-controller
 subjects:
 - kind: ServiceAccount
-  name: sealed-secrets-controller
+  name: default
   namespace: kube-system
 roleRef:
   kind: ClusterRole

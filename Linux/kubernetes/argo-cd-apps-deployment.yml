@@ -102,7 +102,7 @@ spec:
   project: default
   source:
     repoURL: 'git@github.com:Gamer-Iris/MyServerTest.git'
-    targetRevision: 65.3.1
+    targetRevision: HEAD
     helm:
       valueFiles:
         - ./Linux/kubernetes/apps/monitoring/values.yaml

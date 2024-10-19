@@ -102,7 +102,7 @@ spec:
   project: default
   source:
     repoURL: 'https://prometheus-community.github.io/helm-charts'
-    targetRevision: HEAD
+    targetRevision: 65.3.1
     helm:
       valueFiles:
         - ./Linux/kubernetes/apps/monitoring/values.yaml

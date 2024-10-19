@@ -13,9 +13,9 @@ spec:
         app: {{ .Release.Name }}-kube-state-metrics
     spec:
       nodeSelector:
-        labelname: {{ .Values.kube-state-metrics.nodeSelector.labelname }}
+        labelname: {{ .Values.kube-state-metrics.nodeSelector.labelname | quote }}
       containers:
         - name: kube-state-metrics
-          image: quay.io/coreos/kube-state-metrics
+          image: quay.io/coreos/kube-state-metrics:latest
           ports:
             - containerPort: 8080

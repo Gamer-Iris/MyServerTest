@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-kube-state-metrics
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-kube-state-metrics
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-kube-state-metrics
+    spec:
+      nodeSelector:
+        labelname: {{ .Values.kube-state-metrics.nodeSelector.labelname }}
+      containers:
+        - name: kube-state-metrics
+          image: quay.io/coreos/kube-state-metrics
+          ports:
+            - containerPort: 8080

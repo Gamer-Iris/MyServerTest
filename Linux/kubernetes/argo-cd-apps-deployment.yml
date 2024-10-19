@@ -101,9 +101,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://prometheus-community.github.io/helm-charts'
-    targetRevision: 65.3.1
-    chart: kube-prometheus-stack 
+    repoURL: 'git@github.com:Gamer-Iris/MyServerTest.git'
+    targetRevision: HEAD
+    path: './Linux/kubernetes/apps/monitoring'
     helm:
       valueFiles:
         - ./Linux/kubernetes/apps/monitoring/values.yaml
@@ -115,7 +115,7 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
-    - ServerSideApply=true
+      - ServerSideApply=true
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application

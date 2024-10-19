@@ -1,0 +1,35 @@
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  name: {{ .Release.Name }}-prometheus
+spec:
+  replicas: 1
+  serviceAccountName: {{ .Release.Name }}-service-account
+  storage:
+    volumeClaimTemplate:
+      spec:
+        storageClassName: {{ .Values.prometheus.prometheusSpec.storageSpec.volumeClaimTemplate.spec.storageClassName }}
+        accessModes: {{ .Values.prometheus.prometheusSpec.storageSpec.volumeClaimTemplate.spec.accessModes }}
+        resources:
+          requests:
+            storage: {{ .Values.prometheus.prometheusSpec.storageSpec.volumeClaimTemplate.spec.resources.requests.storage }}
+  nodeSelector:
+    labelname: {{ .Values.prometheus.prometheusSpec.nodeSelector.labelname }}
+  securityContext:
+    runAsGroup: {{ .Values.prometheus.prometheusSpec.securityContext.runAsGroup }}
+    runAsNonRoot: {{ .Values.prometheus.prometheusSpec.securityContext.runAsNonRoot }}
+    runAsUser: {{ .Values.prometheus.prometheusSpec.securityContext.runAsUser }}
+    fsGroup: {{ .Values.prometheus.prometheusSpec.securityContext.fsGroup }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-prometheus
+spec:
+  type: {{ .Values.prometheus.service.type }}
+  loadBalancerIP: {{ .Values.prometheus.service.loadBalancerIP }}
+  ports:
+    - port: 9090
+      targetPort: 9090
+  selector:
+    app: {{ .Release.Name }}-prometheus

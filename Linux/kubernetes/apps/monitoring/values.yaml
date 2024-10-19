@@ -47,14 +47,7 @@ grafana:
     nodeSelector:
       labelname: ubuntu-302
 
-prometheusOperator:
-  admissionWebhooks:
-    deployment:
-      nodeSelector:
-        labelname: ubuntu-302
-    patch:
-      nodeSelector:
-        labelname: ubuntu-302
+kube-state-metrics:
   nodeSelector:
     labelname: ubuntu-302
 
@@ -83,11 +76,18 @@ prometheus:
       runAsUser: 0
       fsGroup: 0
 
+prometheusOperator:
+  admissionWebhooks:
+    deployment:
+      nodeSelector:
+        labelname: ubuntu-302
+    patch:
+      nodeSelector:
+        labelname: ubuntu-302
+  nodeSelector:
+    labelname: ubuntu-302
+
 thanosRuler:
   thanosRulerSpec:
     nodeSelector:
       labelname: ubuntu-302
-
-kube-state-metrics:
-  nodeSelector:
-    labelname: ubuntu-302

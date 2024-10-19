@@ -112,7 +112,7 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
-      - ServerSideApply
+    - ServerSideApply=true
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application

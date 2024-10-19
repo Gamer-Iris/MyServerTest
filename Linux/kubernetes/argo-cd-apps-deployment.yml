@@ -106,7 +106,6 @@ spec:
     helm:
       valueFiles:
         - Linux/kubernetes/apps/monitoring/values.yaml
-      chart: kube-prometheus-stack
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: monitoring

@@ -105,7 +105,9 @@ spec:
     targetRevision: HEAD
     path: './Linux/kubernetes/apps/monitoring'
     helm:
-      serverSideApply: true
+      parameters:
+      - name: serverSideApply
+        value: "true"
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: monitoring

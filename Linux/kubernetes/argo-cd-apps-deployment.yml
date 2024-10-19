@@ -136,8 +136,8 @@ spec:
           value: ReadWriteOnce
         - name: grafana.persistence.size
           value: '1Gi'
-        - name: grafana.persistence.finalizers
-          value: '["kubernetes.io/pvc-protection"]'
+        - name: grafana.persistence.finalizers[0]
+          value: 'kubernetes.io/pvc-protection'
         - name: grafana.initChownData.enabled
           value: 'false'
         - name: grafana.defaultDashboardsTimezone

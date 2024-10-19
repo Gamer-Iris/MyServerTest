@@ -101,12 +101,12 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/Gamer-Iris/MyServerTest.git'
+    repoURL: 'git@github.com:Gamer-Iris/MyServerTest.git'
     targetRevision: HEAD
     path: './Linux/kubernetes/apps/monitoring'
     helm:
       valueFiles:
-        - ./Linux/kubernetes/apps/monitoring/values.yaml
+        - values.yaml
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: monitoring

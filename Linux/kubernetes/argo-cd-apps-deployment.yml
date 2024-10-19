@@ -119,7 +119,7 @@ spec:
         - name: alertmanager.alertmanagerSpec.storage.volumeClaimTemplate.spec.storageClassName
           value: 'alertmanager-nfs-storage-class'
         - name: alertmanager.alertmanagerSpec.storage.volumeClaimTemplate.spec.accessModes
-          value: '["ReadWriteOnce"]'
+          value: ReadWriteOnce
         - name: alertmanager.alertmanagerSpec.storage.volumeClaimTemplate.spec.resources.requests.storage
           value: '1Gi'
         - name: alertmanager.alertmanagerSpec.nodeSelector.labelname
@@ -133,7 +133,7 @@ spec:
         - name: grafana.persistence.storageClassName
           value: 'grafana-nfs-storage-class'
         - name: grafana.persistence.accessModes
-          value: '["ReadWriteOnce"]'
+          value: ReadWriteOnce
         - name: grafana.persistence.size
           value: '1Gi'
         - name: grafana.persistence.finalizers
@@ -171,7 +171,7 @@ spec:
         - name: prometheus.prometheusSpec.storageSpec.volumeClaimTemplate.spec.storageClassName
           value: 'prometheus-nfs-storage-class'
         - name: prometheus.prometheusSpec.storageSpec.volumeClaimTemplate.spec.accessModes
-          value: '["ReadWriteOnce"]'
+          value: ReadWriteOnce
         - name: prometheus.prometheusSpec.storageSpec.volumeClaimTemplate.spec.resources.requests.storage
           value: '1Gi'
         - name: prometheus.prometheusSpec.securityContext.runAsGroup

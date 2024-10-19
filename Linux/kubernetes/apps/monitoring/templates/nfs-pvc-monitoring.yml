@@ -1,5 +1,5 @@
-kind: PersistentVolumeClaim
 apiVersion: v1
+kind: PersistentVolumeClaim
 metadata:
   name: alertmanager
   namespace: monitoring
@@ -11,8 +11,8 @@ spec:
       storage: 1Gi
   storageClassName: alertmanager-nfs-storage-class
 ---
-kind: PersistentVolumeClaim
 apiVersion: v1
+kind: PersistentVolumeClaim
 metadata:
   name: prometheus
   namespace: monitoring
@@ -24,8 +24,8 @@ spec:
       storage: 1Gi
   storageClassName: prometheus-nfs-storage-class
 ---
-kind: PersistentVolumeClaim
 apiVersion: v1
+kind: PersistentVolumeClaim
 metadata:
   name: grafana
   namespace: monitoring

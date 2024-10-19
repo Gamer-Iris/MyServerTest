@@ -1,5 +1,5 @@
-kind: PersistentVolume
 apiVersion: v1
+kind: PersistentVolume
 metadata:
   name: alertmanager
   namespace: monitoring
@@ -14,8 +14,8 @@ spec:
     server: ubuntu-102.server.com
     path: /mnt/share/k8s/alertmanager
 ---
-kind: PersistentVolume
 apiVersion: v1
+kind: PersistentVolume
 metadata:
   name: prometheus
   namespace: monitoring
@@ -30,8 +30,8 @@ spec:
     server: ubuntu-102.server.com
     path: /mnt/share/k8s/prometheus
 ---
-kind: PersistentVolume
 apiVersion: v1
+kind: PersistentVolume
 metadata:
   name: grafana
   namespace: monitoring

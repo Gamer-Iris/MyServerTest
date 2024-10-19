@@ -13,7 +13,7 @@ spec:
         app: {{ .Release.Name }}-kube-state-metrics
     spec:
       nodeSelector:
-        labelname: {{ .Values.kube-state-metrics.nodeSelector.labelname | quote }}
+        labelname: {{ index .Values "kube-state-metrics" "nodeSelector" "labelname" }}
       containers:
         - name: kube-state-metrics
           image: quay.io/coreos/kube-state-metrics:latest

@@ -101,8 +101,8 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://prometheus-community.github.io/helm-charts'
-    targetRevision: 65.3.1
+    repoURL: 'git@github.com:prometheus-community/helm-charts.git'
+    targetRevision: HEAD
     path: 'kube-prometheus-stack'
     helm:
       valueFiles:

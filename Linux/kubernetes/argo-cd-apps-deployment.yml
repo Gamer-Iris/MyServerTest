@@ -104,10 +104,6 @@ spec:
     repoURL: 'git@github.com:Gamer-Iris/MyServerTest.git'
     targetRevision: HEAD
     path: './Linux/kubernetes/apps/monitoring'
-    helm:
-      parameters:
-      - name: serverSideApply
-        value: "true"
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: monitoring
@@ -115,6 +111,8 @@ spec:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - ServerSideApply
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application

@@ -96,7 +96,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: monitoring
+  name: monitoring-helm
   namespace: argocd
 spec:
   project: default
@@ -199,6 +199,25 @@ spec:
       selfHeal: true
     syncOptions:
       - ServerSideApply=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: monitoring-resources
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'git@github.com:Gamer-Iris/MyServerTest.git'
+    targetRevision: HEAD
+    path: './Linux/kubernetes/apps/monitoring'
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application

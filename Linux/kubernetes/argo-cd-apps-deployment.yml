@@ -101,7 +101,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'git@github.com:Gamer-Iris/MyServerTest.git'
+    repoURL: 'https://github.com/Gamer-Iris/MyServerTest.git'
     targetRevision: HEAD
     path: './Linux/kubernetes/apps/monitoring'
     helm:

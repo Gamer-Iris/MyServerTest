@@ -4,7 +4,7 @@ kind: ClusterRole
 metadata:
   name: sealed-secrets-controller
 rules:
-- apiGroups: [""]
+- apiGroups: [""]  # Core API group
   resources: ["secrets", "services", "services/proxy"]
   verbs: ["get", "list", "watch", "create", "update", "delete"]
 - apiGroups: ["bitnami.com"]
@@ -17,7 +17,7 @@ metadata:
   name: sealed-secrets-controller
 subjects:
 - kind: ServiceAccount
-  name: default
+  name: sealed-secrets-controller
   namespace: kube-system
 roleRef:
   kind: ClusterRole

@@ -111,7 +111,7 @@ spec:
         - name: alertmanager.config.receivers[0].discord_configs[0].webhook_url
           value: 'https://discord.com/api/webhooks/1075045469530640446/UGb5aprc925oVUjosUqbj9_D1MPYqZvDHXhwJ3qeBiSQlvuRN3GvaRRK8EEMIOpgeYMj'
         - name: alertmanager.service.loadBalancerIP
-          value: '192.168.11.71'
+          value: '192.168.11.72'
         - name: alertmanager.service.type
           value: 'LoadBalancer'
         - name: alertmanager.servicePerReplica.type
@@ -151,7 +151,7 @@ spec:
         - name: grafana.service.type
           value: 'LoadBalancer'
         - name: grafana.service.loadBalancerIP
-          value: '192.168.11.72'
+          value: '192.168.11.73'
         - name: grafana.nodeSelector.labelname
           value: 'ubuntu-302'
         - name: grafana.imageRenderer.nodeSelector.labelname
@@ -161,7 +161,7 @@ spec:
         - name: prometheus.thanosService.type
           value: 'LoadBalancer'
         - name: prometheus.service.loadBalancerIP
-          value: '192.168.11.73'
+          value: '192.168.11.74'
         - name: prometheus.service.type
           value: 'LoadBalancer'
         - name: prometheus.servicePerReplica.type

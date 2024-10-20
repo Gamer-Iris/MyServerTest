@@ -106,6 +106,8 @@ spec:
     chart: kube-prometheus-stack
     helm:
       parameters:
+        - name: alertmanager.config.route.receiver
+          value: 'discord-receiver'
         - name: alertmanager.config.receivers[0].name
           value: 'discord-receiver'
         - name: alertmanager.config.receivers[0].discord_configs[0].webhook_url

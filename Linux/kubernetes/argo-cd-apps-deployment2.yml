@@ -6,13 +6,20 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'git@github.com:Gamer-Iris/MyServerTest.git'
+    repoURL: 'https://bitnami-labs.github.io/sealed-secrets'
     targetRevision: HEAD
-    path: './Linux/kubernetes/apps/sealed-secrets'
+    # targetRevision: 2.16.1
+    chart: sealed-secrets
+    helm:
+      parameters:
+        - name: nodeSelector.labelname
+          value: 'ubuntu-302'
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: sealed-secrets
+    namespace: monitoring
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - ServerSideApply=true

@@ -107,7 +107,7 @@ spec:
     helm:
       parameters:
         - name: alertmanager.config.receivers[0].name
-          value: 'null'
+          value: 'discord-receiver'
         - name: alertmanager.config.receivers[0].discord_configs[0].webhook_url
           value: 'https://discord.com/api/webhooks/1075045469530640446/UGb5aprc925oVUjosUqbj9_D1MPYqZvDHXhwJ3qeBiSQlvuRN3GvaRRK8EEMIOpgeYMj'
         - name: alertmanager.service.loadBalancerIP

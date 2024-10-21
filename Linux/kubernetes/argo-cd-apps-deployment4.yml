@@ -101,15 +101,15 @@ metadata:
 spec:
   project: default
   source:
-    - repoURL: 'https://prometheus-community.github.io/helm-charts'
-      targetRevision: 65.3.1
+    repoURL: 'https://github.com/Gamer-Iris/MyServerTest.git'
+    targetRevision: main
+    path: Linux/kubernetes/apps/monitoring
+    helm:
       chart: kube-prometheus-stack
-      helm:
-        valueFiles:
-          - $repo/Linux/kubernetes/apps/monitoring/values.yaml
-    - repoURL: 'https://github.com/Gamer-Iris/MyServerTest.git'
-      targetRevision: main
-      ref: repo
+      repoURL: 'https://prometheus-community.github.io/helm-charts'
+      targetRevision: 65.3.1
+      valueFiles:
+        - values.yaml
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: monitoring

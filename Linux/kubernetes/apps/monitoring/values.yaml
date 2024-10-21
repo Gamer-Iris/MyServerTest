@@ -3,7 +3,10 @@ alertmanager:
     receivers:
     - name: 'null'
       discord_configs:
-        - webhook_url: ご自分の環境に合わせてください。
+        - webhook_url: 
+            secretKeyRef:
+              name: monitoring-secret
+              key: WEBHOOK_URL
   service:
     loadBalancerIP: 192.168.11.71
     type: LoadBalancer

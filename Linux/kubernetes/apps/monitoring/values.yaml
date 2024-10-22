@@ -1,5 +1,8 @@
 alertmanager:
   config:
+    route:
+      group_by: ['alertname']
+      receiver: 'my_receiver'
     receivers:
     - name: 'my_receiver'
       discord_configs:

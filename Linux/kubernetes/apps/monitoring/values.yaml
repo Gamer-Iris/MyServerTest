@@ -3,10 +3,7 @@ alertmanager:
     receivers:
     - name: 'null'
       discord_configs:
-        - webhook_url: 
-            secretKeyRef:
-              name: monitoring-secret
-              key: WEBHOOK_URL
+        - webhook_url: "{{ .Values.secrets.WEBHOOK_URL }}"
   service:
     loadBalancerIP: 192.168.11.72
     type: LoadBalancer

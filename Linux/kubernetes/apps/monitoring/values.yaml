@@ -1,10 +1,7 @@
 alertmanager:
   config:
-    route:
-      group_by: ['alertname']
-      receiver: 'my_receiver'
     receivers:
-    - name: 'my_receiver'
+    - name: "null"
       discord_configs:
         - webhook_url: https://discord.com/api/webhooks/1075045469530640446/UGb5aprc925oVUjosUqbj9_D1MPYqZvDHXhwJ3qeBiSQlvuRN3GvaRRK8EEMIOpgeYMj
   service:

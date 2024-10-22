@@ -5,7 +5,7 @@ alertmanager:
       discord_configs:
         - webhook_url: https://discord.com/api/webhooks/1075045469530640446/UGb5aprc925oVUjosUqbj9_D1MPYqZvDHXhwJ3qeBiSQlvuRN3GvaRRK8EEMIOpgeYMj
   service:
-    loadBalancerIP: 192.168.11.71
+    loadBalancerIP: 192.168.11.72
     type: LoadBalancer
   servicePerReplica:
     type: LoadBalancer
@@ -40,7 +40,7 @@ grafana:
     fsGroup: 1000
   service:
     type: LoadBalancer
-    loadBalancerIP: 192.168.11.72
+    loadBalancerIP: 192.168.11.73
   nodeSelector:
     labelname: ubuntu-302
   imageRenderer:
@@ -62,7 +62,7 @@ prometheus:
   thanosService:
     type: LoadBalancer
   service:
-    loadBalancerIP: 192.168.11.73
+    loadBalancerIP: 192.168.11.74
     type: LoadBalancer
   servicePerReplica:
     type: LoadBalancer

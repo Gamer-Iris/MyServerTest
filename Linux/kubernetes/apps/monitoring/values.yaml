@@ -3,10 +3,7 @@ alertmanager:
     receivers:
     - name: 'null'
       discord_configs:
-        - webhook_url: |-
-            {{- with secret "monitoring-secret" "WEBHOOK_URL" -}}
-              {{ .Data | b64dec }}
-            {{- end -}}
+        - webhook_url: {{ .Values.webhook_url }}
   service:
     loadBalancerIP: 192.168.11.72
     type: LoadBalancer
@@ -94,3 +91,8 @@ thanosRuler:
 kube-state-metrics:
   nodeSelector:
     labelname: ubuntu-302
+
+webhook_url: |
+  {{- with secret "monitoring-secret" "WEBHOOK_URL" -}}
+    {{ .Data | b64dec }}
+  {{- end -}}

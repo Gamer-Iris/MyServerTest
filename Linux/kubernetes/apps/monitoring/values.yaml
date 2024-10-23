@@ -5,9 +5,9 @@ alertmanager:
       group_wait: 30s
       group_interval: 5m
       repeat_interval: 12h
-      receiver: 'my_receiver'
+      receiver: null
     receivers:
-    - name: 'my_receiver'
+    - name: null
       discord_configs:
         - webhook_url: https://discord.com/api/webhooks/1075045469530640446/UGb5aprc925oVUjosUqbj9_D1MPYqZvDHXhwJ3qeBiSQlvuRN3GvaRRK8EEMIOpgeYMj
   service:

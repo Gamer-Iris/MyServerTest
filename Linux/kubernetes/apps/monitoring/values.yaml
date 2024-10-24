@@ -8,7 +8,8 @@ alertmanager:
     receivers:
     - name: 'my_receiver'
       discord_configs:
-        - webhook_url: https://discord.com/api/webhooks/1075045469530640446/UGb5aprc925oVUjosUqbj9_D1MPYqZvDHXhwJ3qeBiSQlvuRN3GvaRRK8EEMIOpgeYMj
+        - api_url: https://discord.com/api/webhooks/1075045469530640446/UGb5aprc925oVUjosUqbj9_D1MPYqZvDHXhwJ3qeBiSQlvuRN3GvaRRK8EEMIOpgeYMj
+          send_resolved: true
   service:
     loadBalancerIP: 192.168.11.72
     type: LoadBalancer

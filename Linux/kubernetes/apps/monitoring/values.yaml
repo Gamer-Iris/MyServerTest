@@ -13,9 +13,8 @@ alertmanager:
       - name: "null"
         discord_configs:
           - webhook_url: 
-              secret:
-                name: monitoring-secret
-                key: webhook-url
+              name: monitoring-secret
+              key: webhook-url
             send_resolved: true
   service:
     loadBalancerIP: 192.168.11.72

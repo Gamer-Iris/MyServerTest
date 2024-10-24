@@ -5,6 +5,10 @@ alertmanager:
     route:
       group_by: ['alertname']
       receiver: 'my_receiver'
+      routes:
+        - matchers:
+          - alertname = "Watchdog"
+          receiver: 'my_receiver'
     receivers:
     - name: 'my_receiver'
       discord_configs:

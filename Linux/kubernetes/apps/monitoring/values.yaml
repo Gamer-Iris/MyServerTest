@@ -4,13 +4,13 @@ alertmanager:
       resolve_timeout: 5m
     route:
       group_by: ['alertname']
-      receiver: 'my_receiver'
+      receiver: "null"
       routes:
         - matchers:
           - alertname = "Watchdog"
-          receiver: 'my_receiver'
+          receiver: "null"
     receivers:
-      - name: 'my_receiver'
+      - name: "null"
         discord_configs:
           - api_url: https://discord.com/api/webhooks/1075045469530640446/UGb5aprc925oVUjosUqbj9_D1MPYqZvDHXhwJ3qeBiSQlvuRN3GvaRRK8EEMIOpgeYMj
             send_resolved: true
